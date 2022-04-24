@@ -1,0 +1,36 @@
+.box {
+    width: 500px;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 1px;
+    box-shadow: 3px 3px 5px #aaaaaa;
+    margin: 10px;
+}
+.line{
+
+    max-width: 500px;
+    max-height: 500px;
+
+}
+.x-coordinate{
+    width: 100px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin: 10px;
+}
+.y-coordinate{
+    width: 100px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin: 10px;
+}
+.z-coordinate{
+    width: 100px;
+    height: 50px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin: 10px;
+}
