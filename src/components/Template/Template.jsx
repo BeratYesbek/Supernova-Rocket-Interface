@@ -87,24 +87,40 @@ export default function Template(props) {
                 <Row>
 
                     <Col>
-                        <Card style={{ backgroundColor: "red" }} title="Drogue Parachute" bordered={false}>
-                            {data != null ? "Deactive" : ""}
-                        </Card>
+                        {data != null && data[11] == 1 ? <Card style={{ backgroundColor: "green" }} title="Drogue Parachute" bordered={false}>
+                            Active
+                        </Card> :
+                            <Card style={{ backgroundColor: "red" }} title="Drogue Parachute" bordered={false}>
+                                Deactive
+                            </Card>
+                        }
+
+
                     </Col>
                     <Col>
-                        <Card title="Main Parachute" bordered={false}>
-                            {data != null ? "Active" : ""}
-                        </Card>
+                        {data != null && data[12] == 1 ? <Card style={{ backgroundColor: "green" }} title="Main Parachute" bordered={false}>
+                            Active
+                        </Card> :
+                            <Card style={{ backgroundColor: "red" }} title="Main Parachute" bordered={false}>
+                                Deactive
+                            </Card>
+                        }
                     </Col>
 
                     <Col>
-                        <Card style={{ backgroundColor: "green" }} title="Payload Deployment" bordered={false}>
-                            {data != null ? "Deactive" : ""}
-                        </Card>
+                        {data != null && data[13] == 1 ? <Card style={{ backgroundColor: "green" }} title="Payload Deployment" bordered={false}>
+                            Active
+                        </Card> :
+                            <Card style={{ backgroundColor: "red" }} title="Payload Deployment" bordered={false}>
+                                Deactive
+                            </Card>
+                        }
+
                     </Col>
                 </Row>
             </div>
-            <Steps style={{ paddingBottom: '50px' }} current={4} progressDot={customDot}>
+            <Steps style={{ paddingBottom: '50px' }} current={data != null ? data[14].split("#")[0] : 0} progressDot={customDot}>
+                <Step title="On Rod" description="" />
                 <Step title="Launch" description="" />
                 <Step title="Burnout" description="" />
                 <Step title="Apogee" description="" />
