@@ -47,23 +47,21 @@ export default function Coordinate() {
 
     return (
         <div>
-            <Container>
-                <div className='box'>
-                    <label className="x-coordinate">
-                        <h6>X-axis</h6>
-                        5545
-                    </label>
-                    <label className="y-coordinate">
-                        <h6>Y-axis</h6>
-                        6844
-                    </label>
-                    <label  className="z-coordinate">
-                        <h6>Z-axis</h6>
-                        8754
-                    </label>
-                    <Line style={{maxWidth:'500px', maxHeight: '500px'}} className="line" {...config} />
-                </div>
-            </Container>
+            <div>
+                <label className="x-coordinate">
+                    <h6>X-axis</h6>
+                    5545
+                </label>
+                <label className="y-coordinate">
+                    <h6>Y-axis</h6>
+                    6844
+                </label>
+                <label className="z-coordinate">
+                    <h6>Z-axis</h6>
+                    8754
+                </label>
+                <Line style={{ maxWidth: '500px', maxHeight: '500px' }} className="line" {...config} />
+            </div>
 
 
 
