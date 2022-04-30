@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
-import Coordinate from '../components/Coordinate/Coordinate';
-import Temperature from '../components/Temperature/Temperature';
-import Barometer from '../components/Barometer/Barometer';
-import RocketPressure from '../components/RocketPressure/RocketPressure';
-import AltitudeGraphic from '../components/AltitudeGraphic/AltitudeGraphic';
-import styles from '../components/Coordinate/css/style.css'
-import MapContainer from '../components/Maps/MapContainer';
 import Template from '../components/Template/Template';
 import * as signalR from "@microsoft/signalr";
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import { Button } from 'antd';
+
 export default function Main() {
     const [connection, setConnection] = useState(null);
     const [dataRequestProp, setDataRequestProp] = useState(null);
@@ -61,9 +57,13 @@ export default function Main() {
 
     return (
         <div>
-            <div style={{marginTop: '200px'}}>
+            <div style={{ marginTop: '200px' }}>
                 <Container>
-                    <button onClick={() => dataRequest()}>Reuqest</button>
+
+                    <div style={{paddingTop: '50px'}}>
+                        <Button onClick={() => dataRequest()} type="primary">Open Data Request</Button>
+
+                    </div>
                     <Template value={{ data }} ></Template>
                 </Container>
             </div>
