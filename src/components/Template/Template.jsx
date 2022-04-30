@@ -77,9 +77,34 @@ export default function Template(props) {
                             {data != null ? data[4] : ""}
                         </Card>
                     </Col>
+
+
+                </Row>
+
+
+            </div>
+            <div style={{ marginTop: '20px', paddingBottom: '50px' }}>
+                <Row>
+
+                    <Col>
+                        <Card style={{ backgroundColor: "red" }} title="Drogue Parachute" bordered={false}>
+                            {data != null ? "Deactive" : ""}
+                        </Card>
+                    </Col>
+                    <Col>
+                        <Card title="Main Parachute" bordered={false}>
+                            {data != null ? "Active" : ""}
+                        </Card>
+                    </Col>
+
+                    <Col>
+                        <Card style={{ backgroundColor: "green" }} title="Payload Deployment" bordered={false}>
+                            {data != null ? "Deactive" : ""}
+                        </Card>
+                    </Col>
                 </Row>
             </div>
-            <Steps style={{paddingBottom: '50px'}} current={4} progressDot={customDot}>
+            <Steps style={{ paddingBottom: '50px' }} current={4} progressDot={customDot}>
                 <Step title="Launch" description="" />
                 <Step title="Burnout" description="" />
                 <Step title="Apogee" description="" />
