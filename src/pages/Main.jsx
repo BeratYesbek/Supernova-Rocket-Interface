@@ -8,10 +8,12 @@ import RocketPressure from '../components/RocketPressure/RocketPressure';
 import AltitudeGraphic from '../components/AltitudeGraphic/AltitudeGraphic';
 import styles from '../components/Coordinate/css/style.css'
 import MapContainer from '../components/Maps/MapContainer';
+import Template from '../components/Template/Template';
 import * as signalR from "@microsoft/signalr";
 export default function Main() {
     const [connection, setConnection] = useState(null);
     const [dataRequestProp, setDataRequestProp] = useState(null);
+    const [data, setData] = useState(null);
 
     useEffect(() => {
         const newConnection = new signalR.HubConnectionBuilder()
@@ -21,13 +23,16 @@ export default function Main() {
 
         setConnection(newConnection);
     }, []);
+
     useEffect(() => {
         if (dataRequestProp) {
             connection.on('ReceiveData', message => {
+                setData(message.split('*'));
                 console.log(message);
             });
         }
     }, [dataRequestProp]);
+
     useEffect(() => {
         if (connection) {
             connection.on("ReceiveConnID", function (connId) {
@@ -56,8 +61,23 @@ export default function Main() {
 
     return (
         <div>
+            <div style={{marginTop: '200px'}}>
+                <Container>
+                    <button onClick={() => dataRequest()}>Reuqest</button>
+                    <Template value={{ data }} ></Template>
+                </Container>
+            </div>
+
+
+        </div>
+    )
+}
+
+/*
+
+       <div>
             <Container>
-                <button onClick={() => dataRequest()}>Reuqest</button>
+
                 <div class="box">
                     <div class="sub-box">
                         <Row>
@@ -104,5 +124,5 @@ export default function Main() {
             </Container>
 
         </div>
-    )
-}
+
+*/
