@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { Container } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.css';
-import Template from '../components/Template/Template';
 import * as signalR from "@microsoft/signalr";
 import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
-import { Button } from 'antd';
+import { Col, Container, Row } from 'react-bootstrap'
+import Temperature from '../components/Temperature/Temperature';
+import Coordinate from '../components/Coordinate/Coordinate';
+import Barometer from '../components/Barometer/Barometer';
+import RocketPressure from '../components/RocketPressure/RocketPressure';
+import AltitudeGraphic from '../components/AltitudeGraphic/AltitudeGraphic';
+import MapContainer from '../components/Maps/MapContainer';
+import Speed from '../components/Speed/Speed';
 
+import BatteryVoltage from '../components/BatteryVoltage/BatteryVoltage';
+import CustomSteps from '../components/CustomSteps/CustomSteps';
 export default function Main() {
     const [connection, setConnection] = useState(null);
     const [dataRequestProp, setDataRequestProp] = useState(null);
@@ -57,6 +64,55 @@ export default function Main() {
 
     return (
         <div>
+            <Container>
+                <div style={{ paddingTop: '20px' }}>
+                    <CustomSteps ></CustomSteps>
+                </div>
+                <Row >
+                    <Col>
+                        <Coordinate></Coordinate>
+                    </Col>
+                    <Col>
+                        <Temperature ></Temperature>
+                    </Col>
+                    <Col>
+                        <Barometer></Barometer>
+                    </Col>
+                    <Col>
+                        <BatteryVoltage></BatteryVoltage>
+                    </Col>
+
+                </Row>
+
+                <Row>
+
+                    <Col>
+                        <Speed></Speed>
+                    </Col>
+
+                    <Col>
+                        <MapContainer></MapContainer>
+                    </Col>
+
+                    <RocketPressure></RocketPressure>
+                    <AltitudeGraphic></AltitudeGraphic>
+                </Row>
+            </Container>
+
+
+        </div>
+
+
+
+
+
+
+
+    )
+}
+
+/*
+        <div>
             <div style={{ marginTop: '200px' }}>
                 <Container>
 
@@ -70,59 +126,6 @@ export default function Main() {
 
 
         </div>
-    )
-}
 
-/*
-
-       <div>
-            <Container>
-
-                <div class="box">
-                    <div class="sub-box">
-                        <Row>
-                            <Col>
-                                <Coordinate></Coordinate>
-                            </Col>
-                            <Col>
-                                <Temperature ></Temperature>
-                            </Col>
-                            <Col>
-                                <Barometer></Barometer>
-                            </Col>
-
-                        </Row>
-
-                    </div>
-                </div>
-
-
-            </Container>
-            <Container>
-                <div class="box">
-                    <div class="sub-box">
-                        <h4>Altitude Graph</h4>
-                        <AltitudeGraphic></AltitudeGraphic>
-                    </div>
-
-                </div>
-                <div class="box">
-                    <div class="sub-box">
-                        <h5>Pressure Graph</h5>
-                        <RocketPressure></RocketPressure>
-                    </div>
-
-                </div>
-                <div class="box">
-                    <div class="sub-box">
-                        <h5>Pressure Graph</h5>
-                        <MapContainer></MapContainer>
-                    </div>
-
-                </div>
-
-            </Container>
-
-        </div>
 
 */

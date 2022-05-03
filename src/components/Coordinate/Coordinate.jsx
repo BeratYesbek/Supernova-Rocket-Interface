@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Line } from '@ant-design/plots';
-
+import { Card } from 'antd';
+import Rocket from '../../assets/rocket-2.png';
 export default function Coordinate() {
 
     const [data, setData] = useState([]);
@@ -44,27 +45,32 @@ export default function Coordinate() {
             },
         },
     };
+    console.log(Rocket)
 
     return (
         <div>
-            <div>
+
+            <Card title="Coordinates" class='Card'
+                headStyle={{ backgroundColor: '#2B3034', color: '#ffffff' }}
+                bodyStyle={{ backgroundColor: '#31363C' }}
+                bordered={false}
+                style={{ marginBottom: '10px', marginTop: '10px' }}
+                cover={<img src={Rocket} />}
+            >
+
                 <label className="x-coordinate">
-                    <h6>X-axis</h6>
+                    <h6 style={{ color: "#f0ad4e" }}>X-axis</h6>
                     5545
                 </label>
                 <label className="y-coordinate">
-                    <h6>Y-axis</h6>
+                    <h6 style={{ color: "#f0ad4e" }}>Y-axis</h6>
                     6844
                 </label>
                 <label className="z-coordinate">
-                    <h6>Z-axis</h6>
+                    <h6 style={{ color: "#f0ad4e" }} >Z-axis</h6>
                     8754
                 </label>
-                <Line style={{ maxWidth: '500px', maxHeight: '500px' }} className="line" {...config} />
-            </div>
-
-
-
+            </Card>
         </div>
     )
 }

@@ -29,10 +29,7 @@ export default function Template(props) {
             <Row>
                 <div style={{ marginTop: '15px', marginBottom: '15px' }}>
                     {data != null ? data[2] === "1" ? <Tag color="green">Ana Avyonik Sistem</Tag> : <Tag color="purple">Yedek Avyonik Sistem</Tag> : ""}
-
                 </div>
-
-
                 <Col>
                     <Card title="X-Ekseni" bordered={false}>
                         {data != null ? data[8] : ""}
@@ -119,7 +116,7 @@ export default function Template(props) {
                     </Col>
                 </Row>
             </div>
-            <Steps style={{ paddingBottom: '50px' }} current={data != null ? data[14].split("#")[0] : 0} progressDot={customDot}>
+            <Steps style={{ paddingBottom: '50px' }} current={data != null ? data[14]?.split("#")[0] : 0} progressDot={customDot}>
                 <Step title="On Rod" description="" />
                 <Step title="Launch" description="" />
                 <Step title="Burnout" description="" />

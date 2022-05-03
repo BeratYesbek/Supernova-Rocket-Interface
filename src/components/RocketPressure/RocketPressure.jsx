@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Line } from '@ant-design/plots';
 import { Container } from 'react-bootstrap';
+import { Card } from 'antd';
 
 export default function RocketPressure() {
     const [data, setData] = useState([]);
@@ -20,7 +21,7 @@ export default function RocketPressure() {
     const config = {
         data,
         padding: 'auto',
-        xField: 'Date',
+        xField: '   ',
         yField: 'scales',
         annotations: [
 
@@ -52,8 +53,17 @@ export default function RocketPressure() {
     };
     return (
         <div>
-            <h6>Pressure: 25 </h6>
-            <Line {...config} />
+            <Card
+                title="Pressure"
+                headStyle={{ backgroundColor: '#2B3034', color: '#ffffff' }}
+                bodyStyle={{ backgroundColor: '#31363C' }}
+                bordered={false}
+                style={{ marginBottom: '34px', marginTop: '0px' }}
+            >
+                <h6 style={{color: '#f0ad4e'}}>Pressure: 25 </h6>
+                <Line {...config} />
+            </Card>
+
 
         </div>
     )

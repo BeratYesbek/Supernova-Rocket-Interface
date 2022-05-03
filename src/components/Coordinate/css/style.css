@@ -1,16 +1,3 @@
-.box {
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 1px;
-    margin: 7px;
-}
-
-.sub-box {
-    padding: 10px;
-}
-
 .line {
 
     max-width: 500px;
@@ -19,25 +6,41 @@
 }
 
 .x-coordinate {
-    width: 100px;
-    height: 50px;
-    background-color: #ffffff;
+    width: 90px;
     border-radius: 5px;
-    margin: 10px;
+    margin: 5px;
+    color: #fff;
+
 }
 
 .y-coordinate {
-    width: 100px;
-    height: 50px;
-    background-color: #ffffff;
+    width: 90px;
     border-radius: 5px;
-    margin: 10px;
+    margin: 5px;
+    color: #fff;
 }
 
 .z-coordinate {
-    width: 100px;
-    height: 50px;
-    background-color: #ffffff;
+    width: 90px;
     border-radius: 5px;
-    margin: 10px;
+    color: #fff;
+
+}
+
+h6 {
+    color: #fff;
+
+}
+
+.second-barometer {
+    float: left;
+}
+
+li{
+    float: left;
+}
+
+ul {
+    list-style-type: none;
+
 }

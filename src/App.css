@@ -1,6 +1,8 @@
 .App {
   text-align: center;
-  background-color: #EAEDED;
+  background-color: #333B41;
+  width: 100vw;
+
 
 }
 
@@ -38,7 +40,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-* {
 }

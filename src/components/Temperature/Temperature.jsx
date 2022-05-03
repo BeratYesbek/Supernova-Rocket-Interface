@@ -1,5 +1,6 @@
 import React from 'react'
 import { Gauge } from '@ant-design/plots';
+import { Card } from 'antd';
 export default function Temperature() {
 
   const config = {
@@ -25,6 +26,7 @@ export default function Temperature() {
     statistic: {
       content: {
         style: {
+          color: '#f0ad4e',
           fontSize: '20px',
           lineHeight: '20px',
         },
@@ -34,7 +36,16 @@ export default function Temperature() {
 
   return (
     <div>
-      <Gauge {...config} />
+      <Card  title="Temperatures"
+       headStyle={{ backgroundColor: '#2B3034', color: '#ffffff' }}
+       bodyStyle={{ backgroundColor: '#31363C' } }
+       bordered={false}
+       style={{ marginBottom: '10px', marginTop: '10px' }}
+
+      
+      >
+        <Gauge  {...config} />
+      </Card>
     </div>
   )
 }

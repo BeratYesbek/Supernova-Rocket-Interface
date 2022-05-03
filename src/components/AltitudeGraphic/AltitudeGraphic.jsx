@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Area } from '@ant-design/plots';
 import { Container } from 'react-bootstrap';
+import { Card } from 'antd';
 export default function AltitudeGraphic() {
     const [data, setData] = useState([]);
 
@@ -26,9 +27,20 @@ export default function AltitudeGraphic() {
     };
     return (
         <div>
-            <h6>Altitude: 350</h6>
+            <Card headStyle={{ backgroundColor: '#2B3034', color: '#ffffff' }}
+                bordered={false}
+                title="Pressure"
+                style={{ marginBottom: '10px', marginTop: '10px' }}
+                class='Card'
+                bodyStyle={{ backgroundColor: '#31363C' }}>
+                <h6>Altitude: 350</h6>
 
-            <Area {...config} />
-        </div>
+                <Area {...config} />
+            </Card>
+
+        </div >
     )
 }
+
+//#343C40
+//#
