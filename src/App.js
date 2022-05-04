@@ -2,12 +2,18 @@ import logo from './logo.svg';
 import './App.css';
 import Coordinate from './components/Coordinate/Coordinate';
 import 'bootstrap/dist/css/bootstrap.css';
-import Main from './pages/Main';
+import Rocket from './pages/Rocket';
+import Start from './pages/Start';
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Main></Main>
+      <Routes>
+        <Route path="/" element={<Start />} />
+        <Route path='/rocket' element={<Rocket />} />
+      </Routes>
+
     </div>
   );
 }

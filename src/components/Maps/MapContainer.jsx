@@ -42,6 +42,12 @@ export default function MapContainer() {
                                     <p style={{ color: '#f0ad4e', fontSize: '17px' }}>245 KM</p>
                                 </div>
                             </Col>
+                            <Col>
+                                <div>
+                                    <h6 style={{ color: '#fff' }}>Altitude</h6>
+                                    <p style={{ color: '#f0ad4e', fontSize: '17px' }}>245 KM</p>
+                                </div>
+                            </Col>
                             <img style={{ witdh: '250px', height: '220px', borderRadius: '20px' }} src='https://www.basarsoft.com.tr/wp-content/uploads/2019/05/googlemaps-api-002.jpg'></img>
 
 

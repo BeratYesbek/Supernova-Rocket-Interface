@@ -13,10 +13,18 @@ import Speed from '../components/Speed/Speed';
 
 import BatteryVoltage from '../components/BatteryVoltage/BatteryVoltage';
 import CustomSteps from '../components/CustomSteps/CustomSteps';
-export default function Main() {
+import GeneralInfo from '../components/GeneralInfo/GeneralInfo';
+import { Button } from 'antd';
+import { Select } from 'antd';
+
+export default function Rocket() {
     const [connection, setConnection] = useState(null);
     const [dataRequestProp, setDataRequestProp] = useState(null);
+    const [portStatusRequest, setPortRequestStatus] = useState(false);
+    const [ports, setPorts] = useState(null);
+
     const [data, setData] = useState(null);
+    const { Option } = Select;
 
     useEffect(() => {
         const newConnection = new signalR.HubConnectionBuilder()
@@ -56,16 +64,42 @@ export default function Main() {
         }
     }, [connection]);
 
+
+    useEffect(() => {
+        if (connection) {
+            connection.invoke("GetAllComAsync", localStorage.getItem('connId'))
+
+            connection.on("GetAllComAsync", ports => {
+                console.log(ports)
+                setPorts(ports);
+            })
+        }
+    }, [connection])
+
     function dataRequest() {
         console.log("dataRequest");
         connection.invoke("SerialPortDataRequest", localStorage.getItem('connId'))
         setDataRequestProp(true);
     }
 
+
+    function handleChange(value) {
+        console.log(`selected ${value}`);
+    }
+
     return (
-        <div>
+        <div >
             <Container>
-                <div style={{ paddingTop: '20px' }}>
+                <div style={{ float: 'left', marginTop: '20px' }} >
+                    <Select defaultValue="lucy" style={{ width: 120, background: '#333B41', backgroundColor: '#333B41' }} onChange={handleChange}>
+                        <Option value="jack">Jack</Option>
+                    </Select>
+                    <Button style={{ marginLeft: '20px' }} ghost>Chose COM</Button>
+
+                </div>
+
+                <div style={{ paddingTop: '50px' }}>
+                    <GeneralInfo></GeneralInfo>
                     <CustomSteps ></CustomSteps>
                 </div>
                 <Row >

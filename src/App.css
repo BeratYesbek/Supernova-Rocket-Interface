@@ -41,3 +41,83 @@
     transform: rotate(360deg);
   }
 }
+
+.fill-window {
+  height: 100%;
+  position:absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  background-color: #333B41;
+}
+
+.line {
+  /* for chrome and safari*/
+  -webkit-animation-duration: 2.3s;
+  -webkit-animation-name: slidein;
+
+  /*for firefox*/
+  -moz-animation-duration: 2.3s;
+  -moz-animation-name: slidein;
+
+  /* for opera*/
+  -o-animation-duration: 2.3s;
+  -o-animation-name: slidein;
+
+  /* Standard syntax*/
+  animation-duration: 2.3s;
+  animation-name: slidein;
+}
+
+@-webkit-keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@-moz-keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@-o-keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
