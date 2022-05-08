@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Gauge } from '@ant-design/plots';
 import { Card } from 'antd';
-export default function Temperature() {
+export default function Temperature(props) {
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    if(props.value != null){
+      setData(props.value.data)
+    }
+  },[props])
 
   const config = {
-    percent: 0.75,
+    percent: [data != null ? parseInt(data[7]) / 100 : 0],
     type: 'meter',
-    innerRadius: 0.75,
+    innerRadius: 0.85,
     range: {
       ticks: [0, 1 / 3, 2 / 3, 1],
       color: ['#30BF78', '#FAAD14', '#F4664A']
@@ -36,13 +44,13 @@ export default function Temperature() {
 
   return (
     <div>
-      <Card  title="Temperatures"
-       headStyle={{ backgroundColor: '#2B3034', color: '#ffffff' }}
-       bodyStyle={{ backgroundColor: '#31363C' } }
-       bordered={false}
-       style={{ marginBottom: '10px', marginTop: '10px' }}
+      <Card title="Temperatures"
+        headStyle={{ backgroundColor: '#2B3034', color: '#ffffff' }}
+        bodyStyle={{ backgroundColor: '#31363C' }}
+        bordered={false}
+        style={{ marginBottom: '10px', marginTop: '10px' }}
 
-      
+
       >
         <Gauge  {...config} />
       </Card>

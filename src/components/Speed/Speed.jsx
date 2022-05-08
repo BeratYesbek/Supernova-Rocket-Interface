@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Statistic, Card } from 'antd';
 import { Col, Container, Row } from 'react-bootstrap'
 import { Gauge } from '@ant-design/plots';
+import Timer from 'react-timer-wrapper';
+import Timecode from 'react-timecode';
+export default function Speed(props) {
 
-export default function Speed() {
-
-
+    const [data, setData] = React.useState(null);
     const { Countdown } = Statistic;
-    const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30; // Moment is also OK
+    const deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
+
+    useEffect(() => {
+        if (props.value != null) {
+            setData(props.value.data);
+        }
+    }, [props])
+
 
     function onFinish() {
         console.log('finished!');
@@ -21,9 +29,9 @@ export default function Speed() {
 
 
     const config = {
-        percent: 0.72,
+        percent: [data != null ? parseInt(data[6]) / 100 : 0],
         type: 'meter',
-        innerRadius: 0.75,
+        innerRadius: 0.80,
         range: {
             ticks: [0, 1 / 3, 2 / 3, 1],
             color: ['#F4664A', '#FAAD14', '#30BF78'],
@@ -56,6 +64,7 @@ export default function Speed() {
             },
         },
     };
+
     return (
         <div>
             <Card
@@ -66,7 +75,10 @@ export default function Speed() {
                 style={{ marginBottom: '34px', marginTop: '0px' }}>
 
                 <h6 style={{ color: '#fff' }}>Count</h6>
-                <Countdown value={deadline} valueStyle={{ color: '#f0ad4e' }} onFinish={onFinish} />
+                {data != null ? <Timer active duration={null}>
+                    <Timecode style={{ color: '#f0ad4e', fontSize: '17px' }} />
+                </Timer> : ""}
+
                 <Row>
                     <Col>
                         <h6 style={{ color: '#fff' }}>Distance</h6>
@@ -76,9 +88,9 @@ export default function Speed() {
 
                     <Col>
                         <h6 style={{ color: '#fff' }}>Current Speed</h6>
-                        <p style={{ color: '#f0ad4e', fontSize: '17px' }}>25,555 KM/H</p>
+                        <p style={{ color: '#f0ad4e', fontSize: '17px' }}>{data != null ? data[6] : 0} KM/H</p>
                     </Col>
-                    
+
                 </Row>
 
                 <Row>
@@ -95,6 +107,6 @@ export default function Speed() {
 
 
             </Card>
-        </div>
+        </div >
     )
 }

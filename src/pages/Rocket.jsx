@@ -16,12 +16,14 @@ import CustomSteps from '../components/CustomSteps/CustomSteps';
 import GeneralInfo from '../components/GeneralInfo/GeneralInfo';
 import { Button } from 'antd';
 import { Select } from 'antd';
-
+import { Routes, Route, Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
 export default function Rocket() {
     const [connection, setConnection] = useState(null);
     const [dataRequestProp, setDataRequestProp] = useState(null);
     const [portStatusRequest, setPortRequestStatus] = useState(false);
     const [ports, setPorts] = useState(null);
+    const [selectedPort, setSelectedPort] = useState(null);
 
     const [data, setData] = useState(null);
     const { Option } = Select;
@@ -57,8 +59,7 @@ export default function Rocket() {
             connection.start()
                 .then(result => {
                     console.log('Connected!');
-
-
+                    connection.invoke("GetAllComAsync", localStorage.getItem('connId'))
                 })
                 .catch(e => console.log('Connection failed: ', e));
         }
@@ -67,8 +68,6 @@ export default function Rocket() {
 
     useEffect(() => {
         if (connection) {
-            connection.invoke("GetAllComAsync", localStorage.getItem('connId'))
-
             connection.on("GetAllComAsync", ports => {
                 console.log(ports)
                 setPorts(ports);
@@ -76,30 +75,47 @@ export default function Rocket() {
         }
     }, [connection])
 
-    function dataRequest() {
-        console.log("dataRequest");
-        connection.invoke("SerialPortDataRequest", localStorage.getItem('connId'))
-        setDataRequestProp(true);
+    function handleChange(value) {
+        setSelectedPort(value);
+        console.log(`selected ${value}`);
     }
 
+    function StartCom() {
+        if (selectedPort != null) {
+            connection.invoke("SerialPortDataRequest", setSelectedPort)
+            setDataRequestProp(true);
+        } else {
 
-    function handleChange(value) {
-        console.log(`selected ${value}`);
+            toast('You must chose a Port', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                theme: "dark",
+                progress: undefined,
+            });
+
+        }
+
     }
 
     return (
         <div >
             <Container>
                 <div style={{ float: 'left', marginTop: '20px' }} >
-                    <Select defaultValue="lucy" style={{ width: 120, background: '#333B41', backgroundColor: '#333B41' }} onChange={handleChange}>
-                        <Option value="jack">Jack</Option>
+                    <Select defaultValue="Choose Port" style={{ width: 120, background: '#333B41', backgroundColor: '#333B41' }} onChange={handleChange}>
+                        {ports != null ? ports.map((port) => (
+                            <Option value={port}>{port}</Option>
+                        )) : ""}
                     </Select>
-                    <Button style={{ marginLeft: '20px' }} ghost>Chose COM</Button>
+                    <Button style={{ marginLeft: '20px' }} onClick={() => StartCom()} ghost>Start COM</Button>
 
                 </div>
 
                 <div style={{ paddingTop: '50px' }}>
-                    <GeneralInfo></GeneralInfo>
+                    <GeneralInfo value={{ data }}></GeneralInfo>
                     <CustomSteps ></CustomSteps>
                 </div>
                 <Row >
@@ -107,10 +123,10 @@ export default function Rocket() {
                         <Coordinate></Coordinate>
                     </Col>
                     <Col>
-                        <Temperature ></Temperature>
+                        <Temperature value={{ data }} ></Temperature>
                     </Col>
                     <Col>
-                        <Barometer></Barometer>
+                        <Barometer value={{ data }}></Barometer>
                     </Col>
                     <Col>
                         <BatteryVoltage></BatteryVoltage>
@@ -121,17 +137,19 @@ export default function Rocket() {
                 <Row>
 
                     <Col>
-                        <Speed></Speed>
+                        <Speed value={{data}}></Speed>
                     </Col>
 
                     <Col>
-                        <MapContainer></MapContainer>
+                        <MapContainer value={{ data }}></MapContainer>
                     </Col>
 
                     <RocketPressure></RocketPressure>
                     <AltitudeGraphic></AltitudeGraphic>
                 </Row>
             </Container>
+            <ToastContainer />
+
 
 
         </div>

@@ -1,9 +1,16 @@
 import { Card, Tag } from 'antd'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { Button } from 'antd';
-export default function GeneralInfo() {
+export default function GeneralInfo(props) {
 
+    const [propData, setPropData] = useState(null);
+
+    useEffect(() => {
+        if (props.value != null) {
+            setPropData(props.value.data)
+        }
+    })
 
     return (
         <div>
@@ -16,13 +23,13 @@ export default function GeneralInfo() {
                 <Row>
                     <Col>
                         <h5 style={{ color: '#f0ad4e' }}>Avionic System</h5>
-                        <Tag color="magenta">Base Avionic System</Tag>
+                        {propData != null ? (propData[0].split("@")[1] === "0" ? <Tag color="magenta">Base Avionic System</Tag> : <Tag color="cyan">Backup Avionic System</Tag>) : null}
 
                     </Col>
 
                     <Col>
                         <h5 style={{ color: '#f0ad4e' }}>Number of Package</h5>
-                        <Tag color="green">Current Package:  <strong>15</strong> </Tag>
+                        <Tag color="green">Current Package:  <strong>{propData != null ? propData[1] : 0 }</strong> </Tag>
                     </Col>
                 </Row>
 

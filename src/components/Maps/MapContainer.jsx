@@ -1,10 +1,10 @@
-import React, { ReactElement } from 'react'
+import React, { ReactElement, useState, useEffect } from 'react'
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 import { Map } from './Map'
 import { Statistic, Card } from 'antd';
 import { Col, Container, Row } from 'react-bootstrap'
 import satellite from '../../assets/satellite.png'
-export default function MapContainer() {
+export default function MapContainer(props) {
     const center = { lat: -34.397, lng: 150.644 };
     const zoom = 4;
 
@@ -13,6 +13,13 @@ export default function MapContainer() {
         if (status === Status.FAILURE) return <h3>{status} ...</h3>;
         return null;
     };
+
+    const [data, setData] = useState(null)
+    useEffect(() => {
+        if (props.value != null) {
+            setData(props.value.data)
+        }
+    }, [props])
 
 
     return (
@@ -26,26 +33,26 @@ export default function MapContainer() {
                 style={{ marginBottom: '34px', marginTop: '0px' }}>
                 <Row>
                     <Col sm={5} >
-                        <img style={{ witdh: '200px', height: '200px',marginTop:'70px' ,borderRadius: '20px' }} src={satellite}></img>
+                        <img style={{ witdh: '200px', height: '200px', marginTop: '70px', borderRadius: '20px' }} src={satellite}></img>
                     </Col>
                     <Col sm={7}>
                         <Row>
                             <Col>
                                 <div>
                                     <h6 style={{ color: '#fff' }}>Latitude</h6>
-                                    <p style={{ color: '#f0ad4e', fontSize: '17px' }}>245 KM</p>
+                                    <p style={{ color: '#f0ad4e', fontSize: '17px' }}>{data != null ? data[8] : 0}</p>
                                 </div>
                             </Col>
                             <Col>
                                 <div>
                                     <h6 style={{ color: '#fff' }}>Longitude</h6>
-                                    <p style={{ color: '#f0ad4e', fontSize: '17px' }}>245 KM</p>
+                                    <p style={{ color: '#f0ad4e', fontSize: '17px' }}>{data != null ? data[9] : 0}</p>
                                 </div>
                             </Col>
                             <Col>
                                 <div>
                                     <h6 style={{ color: '#fff' }}>Altitude</h6>
-                                    <p style={{ color: '#f0ad4e', fontSize: '17px' }}>245 KM</p>
+                                    <p style={{ color: '#f0ad4e', fontSize: '17px' }}>{data != null ? data[10] : 0}</p>
                                 </div>
                             </Col>
                             <img style={{ witdh: '250px', height: '220px', borderRadius: '20px' }} src='https://www.basarsoft.com.tr/wp-content/uploads/2019/05/googlemaps-api-002.jpg'></img>
